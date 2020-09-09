@@ -17,4 +17,3 @@ def insertion_sort(input_list: list):
 
     # Return sorted list
     return input_list
-

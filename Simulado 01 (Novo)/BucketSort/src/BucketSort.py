@@ -9,12 +9,13 @@ def bucket_sort(input_list: list):
     # Get possible characters
     alphabet = list(string.digits + string.ascii_lowercase)
 
-    # Create one bucket for each char
+    # Create one bucket for each type of char
     buckets = [list() for _ in range(len(alphabet))]
 
-    # Add each element in correct bucket
+    # Add each element in correct bucket based on first char
     for element in input_list:
         buckets[alphabet.index(element[0])].append(element)
+    
     # Sort each bucket using insertion sort
     buckets = [insertion_sort(bucket) for bucket in buckets]
 
