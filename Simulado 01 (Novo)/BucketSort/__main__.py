@@ -22,6 +22,10 @@ def main():
     n, k = input().split()
     input_list = input().split()
 
+    # Check if input is correct length
+    if len(input_list) != int(n):
+        raise Exception("Invalid input")
+
     # Check if input is valid
     if k != 'x':
         k = int(k)
