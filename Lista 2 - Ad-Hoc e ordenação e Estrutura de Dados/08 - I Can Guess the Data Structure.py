@@ -2,42 +2,41 @@ def test():
     try:
         while True:
             n = int(input())
+            
+            queue = list()
+            stack = list()
+            priority_queue = list()
 
-            inserted = list()
-            taken = list()
-            numbers = list()
-
-            priority_queue = True
+            is_queue = True
+            is_stack = True
+            is_priority_queue = True
 
             for _ in range(n):
                 operation, number = [int(x) for x in input().split()]
 
                 if operation == 1:
-                    numbers.append(number)
-                    inserted.append(number)
+                    if is_queue:
+                        queue.append(number)
+                    if is_stack:
+                        stack.append(number)
+                    if is_priority_queue:
+                        priority_queue.append(number)
                 else:
-                    taken.append(number)
+                    if is_queue:
+                        is_queue = (number == queue.pop(0))
+                    if is_stack:
+                        is_stack = (number == stack.pop(-1))
+                    if is_priority_queue:
+                        priority_queue.sort()
+                        is_priority_queue = (number == priority_queue.pop(-1))
 
-                    if number in numbers:
-                        numbers.remove(number)
-                    else:
-                        priority_queue = False
-                        
-                    if priority_queue and not all(i <= number for i in numbers):
-                        priority_queue = False
-
-            queue = (inserted == taken)
-
-            inserted.reverse()
-            stack = (inserted == taken)
-
-            if (queue and stack) or (queue and priority_queue) or (stack and priority_queue):
+            if (is_queue and is_stack) or (is_queue and is_priority_queue) or (is_stack and is_priority_queue):
                 print('not sure')
-            elif queue:
+            elif is_queue:
                 print('queue')
-            elif stack:
+            elif is_stack:
                 print('stack')
-            elif priority_queue:
+            elif is_priority_queue:
                 print('priority queue')
             else:
                 print('impossible')
