@@ -2,35 +2,23 @@
 
 using namespace std;
 
-int getAndUpdateSmallest(int bancos[][2], int b1) {
-    if (bancos[b1][0] == b1)
+int getAndUpdate(int bancos[], int b1) {
+    if (bancos[b1] == b1)
         return b1;
     else {
-        int b2 = getAndUpdateSmallest(bancos, bancos[b1][0]);
-        bancos[b1][0] = b2;
-        return b2;
-    }
-}
-
-int getAndUpdateLargest(int bancos[][2], int b1) {
-    if (bancos[b1][1] == b1)
-        return b1;
-    else {
-        int b2 = getAndUpdateLargest(bancos, bancos[b1][1]);
-        bancos[b1][1] = b2;
-        return b2;
+        bancos[b1] = getAndUpdate(bancos, bancos[b1]);
+        return bancos[b1];
     }
 }
 
 int main() {
     int n, b;
-    int bancos[100000][2];
+    int bancos[100000];
 
     scanf(" %d %d", &n, &b);
 
     for(int i = 0; i < n; i++) {
-        bancos[i][0] = i;
-        bancos[i][1] = i;
+        bancos[i] = i;
     }
 
     char c;
@@ -43,21 +31,12 @@ int main() {
         b2--;
 
         if (c == 'F') {
-            if (getAndUpdateSmallest(bancos, b1) >= getAndUpdateSmallest(bancos, b2)) {
-                bancos[bancos[b1][0]][0] = bancos[b2][0];
-                bancos[b1][0] = bancos[b2][0];
+            if (getAndUpdate(bancos, b1) >= getAndUpdate(bancos, b2)) {
+                bancos[bancos[b1]] = bancos[b2];
             }else{
-                bancos[bancos[b2][0]][0] = bancos[b1][0];
-                bancos[b2][0] = bancos[b1][0];
+                bancos[bancos[b2]] = bancos[b1];
             }
-            if (getAndUpdateLargest(bancos, b1) <= getAndUpdateLargest(bancos, b2)) {
-                bancos[bancos[b1][1]][1] = bancos[b2][1];
-                bancos[b1][1] = bancos[b2][1];
-            }else{
-                bancos[bancos[b2][1]][1] = bancos[b1][1];
-                bancos[b2][1] = bancos[b1][1];
-            }
-        } else if ((getAndUpdateSmallest(bancos, b1) == getAndUpdateSmallest(bancos, b2)) || (getAndUpdateLargest(bancos, b1) == getAndUpdateLargest(bancos, b2))) {
+        } else if (getAndUpdate(bancos, b1) == getAndUpdate(bancos, b2)) {
             printf("S\n");
         } else {
             printf("N\n");
@@ -68,6 +47,5 @@ int main() {
         }
         */
     }
-    printf("\n");
     return 0;
 }
