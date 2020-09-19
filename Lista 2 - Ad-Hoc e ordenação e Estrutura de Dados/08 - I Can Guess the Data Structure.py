@@ -16,7 +16,6 @@ def test():
                     numbers.append(number)
                     inserted.append(number)
                 else:
-                    print(numbers)
                     taken.append(number)
 
                     if number in numbers:
