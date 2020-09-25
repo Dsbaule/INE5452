@@ -30,7 +30,7 @@ class MaxHeap:
         self.maxHeap[i2] = temp
     
     def vazia(self):
-        return self.n <= 1
+        return self.n < 1
 
     def check(self):
         valid = True
@@ -43,7 +43,7 @@ class MaxHeap:
 
     # Funções Principais
 
-    def max_heapfica(self, i):
+    def max_heapfica(self, i = 1):
         e = self.filho_esq(i)
         d = self.filho_dir(i)
 
