@@ -1,21 +1,72 @@
 using namespace std;
 
-#include <stdio.h>
+#include <iostream>
+#include <queue>
+#include <vector>
+
+class Process {
+    public:
+        long long int t;
+        long int c;
+    
+    Process(long int t, int c){
+        this->t = t;
+        this->c = c;
+    }
+};
+
+class Compare_c {
+public:
+    bool operator () (const Process* p1, const Process* p2) {
+        return (p1->c > p2->c);
+    }
+};
+
+class Compare_t {
+public:
+    bool operator () (const Process* p1, const Process* p2) {
+        return (p1->t > p2->t);
+    }
+};
 
 int main(){
-    int n, t, c;
-    int processes[100000][2];
+    long int n, t, c;
+    Process *process, *cur_process;
+    long long int total, cur_time;
 
-    scanf("%d ", &n);
+    priority_queue<Process*, vector<Process*>, Compare_t> process_list;
+    priority_queue<Process*, vector<Process*>, Compare_c> process_queue;
 
-    for(int i = 0; i < n; i++){
-        scanf("%d %d", &t, &c);
-        processes[i][0] = t;
-        processes[i][1] = c;
+    while(cin >> n){
+        total = 0;
+        cur_time = 1;
+
+        for(long int i = 0; i < n; i++){
+            cin >> t >> c;
+            process = new Process(t, c);
+            process_list.push(process);
+        }
+
+        while (!(process_queue.empty() && process_list.empty())) {
+            //cout << process_list.empty() << process_queue.empty() << endl;
+            if (process_queue.empty() && (process_list.top()->t > cur_time)) {
+                cur_time = process_list.top()->t;
+            }
+
+            while ((!process_list.empty()) && (process_list.top()->t <= cur_time)) {
+                cur_process = process_list.top();
+                process_queue.push(cur_process);
+                process_list.pop();
+            }
+
+            cur_process = process_queue.top();
+            total += cur_time - cur_process->t;
+            cur_time += cur_process->c;
+            process_queue.pop();
+        }
+
+        cout << total << endl;
     }
-
-    int total = 0;
-    int cur_time = 1;
 
     
 }
