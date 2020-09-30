@@ -1,3 +1,12 @@
+""" 
+Autor: Daniel de Souza Baulé (16200639)
+
+Disciplina: INE5452 - Topicos Especiais em Algoritmos II
+Atividade:  Segundo simulado - Questoes extra-URI
+
+Implementação de uma MaxHeap
+"""
+
 class MaxHeap:
     def __init__(self, n):
         self.n = n
@@ -5,7 +14,7 @@ class MaxHeap:
         
     
     def __str__(self):
-        return str(self.maxHeap)
+        return str(self.maxHeap[1:self.n + 1])
 
     # Funções Auxiliares
 

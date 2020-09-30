@@ -1,3 +1,12 @@
+""" 
+Autor: Daniel de Souza Baulé (16200639)
+
+Disciplina: INE5452 - Topicos Especiais em Algoritmos II
+Atividade:  Segundo simulado - Questoes extra-URI
+
+Classe que define um Processo
+"""
+
 class Processo:
     def __init__(self, i, t, p, v, heap_time):
         self.i = i
@@ -5,6 +14,9 @@ class Processo:
         self.p = p
         self.v = v
         self.heap_time = -heap_time
+    
+    def __repr__(self):
+        return str(self.v) + '(' + str(self.t) + ')'
 
     def __str__(self):
         return str(self.v)

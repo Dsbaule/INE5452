@@ -4,8 +4,9 @@ Autor: Daniel de Souza Baulé (16200639)
 Disciplina: INE5452 - Topicos Especiais em Algoritmos II
 Atividade:  Segundo simulado - Questoes extra-URI
 
-União de Conjuntos
+Escalonador de Processos
 """
+
 from src.EscalonadorDeProcessos.MaxHeap import MaxHeap
 from src.EscalonadorDeProcessos.Processo import Processo
 from pprint import pp

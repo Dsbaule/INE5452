@@ -4,7 +4,7 @@ Autor: Daniel de Souza Baulé (16200639)
 Disciplina: INE5452 - Topicos Especiais em Algoritmos II
 Atividade:  Segundo simulado - Questoes extra-URI
 
-União de Conjuntos
+União de Conjuntos - Nó
 """
 
 # Class to implement union find Node
