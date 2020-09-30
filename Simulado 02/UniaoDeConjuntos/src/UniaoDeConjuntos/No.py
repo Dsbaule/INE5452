@@ -14,6 +14,9 @@ class No:
         self.rank = 0
         self.valor = valor
         self.pai = self
+
+    def __repr__(self):
+        return f'{self.valor}({self.pai.valor})'
     
     # Find root
     def encontrar(self):

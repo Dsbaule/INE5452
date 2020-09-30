@@ -11,10 +11,10 @@ from src.UniaoDeConjuntos.No import No
 from pprint import pp
 
 # Get input sets
-n = int(input("Número de Conjuntos: "))
+n = int(input())
 conjuntos = list()
 for conjunto in range(n):
-    conjuntos.append([int(x) for x in input(f"Conjunto {conjunto + 1}: ").split()])
+    conjuntos.append([int(x) for x in input().split()])
 
 # For each set, create nodes for all elements and unite them
 conjunto_dict = dict()
@@ -25,9 +25,9 @@ for conjunto in conjuntos:
         conjunto_dict[no].unir(conjunto_dict[conjunto[0]])
 
 # Get input values and execute new unions
-m = int(input("Número de Operações: "))
+m = int(input())
 for operacao in range(m):
-    i, j = [int(x) for x in input(f"Operação {operacao + 1}: ").split()]
+    i, j = [int(x) for x in input().split()]
     conjunto_dict[i].unir(conjunto_dict[j])
 
 # Go through all nodes, grouping them by root to obtain sets
@@ -48,6 +48,6 @@ for sorted_set in sorted_sets:
 sorted_sets.sort()
 
 # Print resulting sets
-print("Conjuntos Resultantes:")
+# print("Conjuntos Resultantes:")
 for sorted_set in sorted_sets:
     print(*sorted_set, sep=' ')
