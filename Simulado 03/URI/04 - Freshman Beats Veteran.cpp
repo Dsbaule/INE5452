@@ -9,9 +9,9 @@ using namespace std;
 // Merges two subarrays of arr[]. 
 // First subarray is arr[l..m] 
 // Second subarray is arr[m+1..r] 
-long long int merge(string arr[], int l, int m, int r) 
+long long merge(string arr[], int l, int m, int r) 
 { 
-    long long int swaps = 0;
+    long long swaps = 0;
     int n1 = m - l + 1; 
     int n2 = r - m; 
   
@@ -19,7 +19,7 @@ long long int merge(string arr[], int l, int m, int r)
     string L[n1], R[n2]; 
   
     // Copy data to temp arrays L[] and R[]  
-    for(int i = 0; i < n1; i++) 
+    for(int i = 0; i < n1; i++)
         L[i] = arr[l + i]; 
     for(int j = 0; j < n2; j++) 
         R[j] = arr[m + 1 + j]; 
@@ -46,7 +46,7 @@ long long int merge(string arr[], int l, int m, int r)
         { 
             arr[k] = R[j]; 
             j++; 
-            swaps += (long long int)(n1 - i);
+            swaps += (long long)(n1 - i);
         } else {
             arr[k] = L[i]; 
             i++; 
@@ -78,9 +78,9 @@ long long int merge(string arr[], int l, int m, int r)
 // l is for left index and r is  
 // right index of the sub-array 
 // of arr to be sorted */ 
-long long int mergeSort(string arr[], int l, int r) 
+long long mergeSort(string arr[], int l, int r) 
 { 
-    long long int swaps = 0;
+    long long swaps = 0;
     if (l < r) 
     { 
           
@@ -100,7 +100,7 @@ long long int mergeSort(string arr[], int l, int r)
 int main() {
     int n, i;
     string registrations[100000];
-    long long int swaps;
+    long long swaps;
 
     cin >> n;
 
@@ -109,7 +109,7 @@ int main() {
     }
 
     swaps = mergeSort(registrations, 0, n - 1);
-    cout << swaps << endl;
+    printf("%lld\n", swaps);
 
     return 0;
 }
