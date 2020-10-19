@@ -43,15 +43,12 @@ def merge_sort(numbers):
 
 def test():
     n = int(input())
-    
-    students = list()
-
-    for i in range(n):
-        students.append(input())
-    
-    swaps,students = merge_sort(students)
-
+    players = [int(x) for x in input().split()[::-1]]
+    swaps,_ = merge_sort(players)
     print(swaps)
-    #pprint(students)
 
-test()
+while(True):
+    try:
+        test()
+    except EOFError:
+        break

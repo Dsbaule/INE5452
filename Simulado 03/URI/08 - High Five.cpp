@@ -1,7 +1,4 @@
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 using namespace std;
 
@@ -9,14 +6,14 @@ using namespace std;
 // Merges two subarrays of arr[]. 
 // First subarray is arr[l..m] 
 // Second subarray is arr[m+1..r] 
-long long int merge(string arr[], int l, int m, int r) 
+long long int merge(int arr[], int l, int m, int r) 
 { 
     long long int swaps = 0;
     int n1 = m - l + 1; 
     int n2 = r - m; 
   
     // Create temp arrays  
-    string L[n1], R[n2]; 
+    int L[n1], R[n2]; 
   
     // Copy data to temp arrays L[] and R[]  
     for(int i = 0; i < n1; i++) 
@@ -37,20 +34,17 @@ long long int merge(string arr[], int l, int m, int r)
       
     while (i < n1 && j < n2) 
     { 
-        if (L[i].compare(R[j]) < 0)  
+        if (L[i] <= R[j])  
         { 
             arr[k] = L[i]; 
             i++; 
-        }
-        else if (R[j].compare(L[i]) < 0)  
+        } 
+        else 
         { 
             arr[k] = R[j]; 
             j++; 
-            swaps += (long long int)(n1 - i);
-        } else {
-            arr[k] = L[i]; 
-            i++; 
-        }
+            swaps += n1 - i;
+        } 
         k++; 
     } 
   
@@ -78,7 +72,7 @@ long long int merge(string arr[], int l, int m, int r)
 // l is for left index and r is  
 // right index of the sub-array 
 // of arr to be sorted */ 
-long long int mergeSort(string arr[], int l, int r) 
+long long int mergeSort(int arr[], int l, int r) 
 { 
     long long int swaps = 0;
     if (l < r) 
@@ -99,17 +93,16 @@ long long int mergeSort(string arr[], int l, int r)
 
 int main() {
     int n, i;
-    string registrations[100000];
+    int players[100000];
     long long int swaps;
 
-    cin >> n;
+    while (cin >> n) {
+        for(i = n - 1; i >= 0; i--)
+            cin >> players[i];
 
-    for(i = 0; i < n; i++){
-        cin >> registrations[i];
+        swaps = mergeSort(players, 0, n - 1);
+        cout << swaps << endl;
     }
-
-    swaps = mergeSort(registrations, 0, n - 1);
-    cout << swaps << endl;
 
     return 0;
 }
