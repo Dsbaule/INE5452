@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 		for (int i = 0; i < n; i++)
 			scanf("%s", v[i].s);
 
-		merge(v, n - 1, &swaps);
+		merge(v, n, &swaps);
 		printf("%lld\n", swaps);
 	}
 

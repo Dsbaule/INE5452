@@ -54,4 +54,8 @@ def test():
     print(swaps)
     #pprint(students)
 
-test()
+try:
+    while(True):
+        test()
+except EOFError:
+    pass
