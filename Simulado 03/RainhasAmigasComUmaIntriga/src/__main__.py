@@ -90,7 +90,7 @@ def safe(tabuleiro, i, j):
 
 def main():
     # Obtem o tamanho do tabuleiro
-    n = int(input("n = "))
+    n = int(input())
 
     # Obtem os resultados
     num_rainhas, posicoes = intriga(n)
@@ -100,7 +100,7 @@ def main():
     posicoes = [(i + 1, j + 1) for (i, j) in posicoes]
 
     # Imprime resultado
-    print('Uma rainha em qualquer uma das seguintes posições minimiza o número de rainhas amigas no tabuleiro para {}:'.format(num_rainhas))
+    #print('Uma rainha em qualquer uma das seguintes posições minimiza o número de rainhas amigas no tabuleiro para {}:'.format(num_rainhas))
     print(*posicoes, sep=' ')
 
 main()
