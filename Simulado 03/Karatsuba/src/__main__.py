@@ -64,18 +64,19 @@ def karatsuba_rec(n1, n2):
 
 # Algorítmo de Karatsuba com ED (vetor)
 def karatsuba(n1, n2, rec=False):
-    # Check if call was for recursive
+    # Verifica se a chamada é pelo algoritmo recursivo simples, para debug
     if rec:
         return karatsuba_rec(n1, n2)
 
-    # Convert int to array of bits (in reverse)
-    n1 = [int(digito) for digito in bin(n1)[2::-1]]
-    n2 = [int(digito) for digito in bin(n2)[2::-1]]
+    # Gera listas de bits a partir dos inteiros, do menos ao mais significativo
+    n1 = [int(digito) for digito in bin(n1)[2:]][::-1]
+    n2 = [int(digito) for digito in bin(n2)[2:]][::-1]
 
-    # Return result
+    # Retorna o resultado do algorítmo
     return karatsuba_ed(n1, n2, 0, len(n1), 0, len(n2))
 
 
+# Algoritmo de Karatsuba com ED
 def karatsuba_ed(n1, n2, l1, len1, l2, len2):
     if len1 < 5 or len2 < 5:
         return multiplica(n1, n2, l1, len1, l2, len2)
@@ -101,10 +102,10 @@ def multiplica(n1: list(), n2: list(), l1, len1, l2, len2):
     num2 = 0
 
     for i in range(len1):
-        num1 += (2 ** i) * n1[l1 + len1 - 1 - i]
+        num1 += (2 ** i) * n1[l1 + i]
     
     for i in range(len2):
-        num2 += (2 ** i) * n2[l2 + len2 - 1 - i]
+        num2 += (2 ** i) * n2[l2 + i]
 
     #print('M {} {} {} {} {} {} - {}'.format(n1[l1:l1+len1], l1, len1, n2[l2:l2+len2], l2, len2,num1 * num2))
     return num1 * num2
@@ -114,10 +115,10 @@ def soma(n1: list(), n2: list(), l1, len1, l2, len2):
     num2 = 0
 
     for i in range(len1):
-        num1 += (2 ** i) * n1[l1 + len1 - 1 - i]
+        num1 += (2 ** i) * n1[l1 + i]
     
     for i in range(len2):
-        num2 += (2 ** i) * n2[l2 + len2 - 1 - i]
+        num2 += (2 ** i) * n2[l2 + i]
 
     #print('S {} {} {} {} {} {} - {}'.format(n1[l1:l1+len1], l1, len1, n2[l2:l2+len2], l2, len2,num1 + num2))
     return num1 + num2
@@ -126,6 +127,6 @@ def main():
     # Obtem o número a ser multiplicado
     n1 = int(input("n1 = "))
     n2 = int(input("n2 = "))
-    print('Resultado da Multiplicacao: {}'.format(karatsuba(n1, n2, True)))
+    print('Resultado da Multiplicacao: {}'.format(karatsuba(n1, n2, False)))
 
 main()
