@@ -138,10 +138,12 @@ def soma(n1: list(), n2: list(), l1, len1, l2, len2):
     return num1 + num2
 
 def main():
+    # Ignore first line (len not needed in python)
+    input()
     # Obtem o número a ser multiplicado
-    n1 = int(input("n1 = "))
-    n2 = int(input("n2 = "))
+    n1 = int(input())
+    n2 = int(input())
     # Imprime o resultado da multiplicação
-    print('Resultado da Multiplicacao: {}'.format(karatsuba(n1, n2)))
+    print(karatsuba(n1, n2))
 
 main()
