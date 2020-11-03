@@ -31,7 +31,7 @@ def main():
             sumSM += diffs[i + numSM]
             numSM += 1
         
-        if numLG > numSM:
+        if numLG > numSM :
             leftover = LG
         else:
             leftover = SM
