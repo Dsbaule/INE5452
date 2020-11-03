@@ -95,10 +95,32 @@ def computa_OPT_memorizado(requisicoes: list, j:int, M: list = None):
     # Retorne o resultado
     return M[j]
     
+def obtem_subconjunto_por_peso(requisicoes: list, peso:int, t: int = 0):
+    if len(requisicoes) == 0:
+        return [], 0
 
-def main():
+    requisicao = requisicoes.pop(0)
+
+    requisicoes_restantes = []
+    valor_obtido = 0
+
+    if requisicao.s >= t:
+        requisicoes_restantes, valor_obtido = obtem_subconjunto_por_peso(requisicoes, peso - requisicao.v, requisicao.f)
+        if valor_obtido + requisicao.v == peso:
+            valor_obtido = valor_obtido + requisicao.v
+            requisicoes_restantes.insert(0, requisicao)
+
+    if requisicoes_restantes == []:
+        requisicoes_restantes, valor_obtido = obtem_subconjunto_por_peso(requisicoes, peso, t)
+
+    requisicoes.insert(0, requisicao)
+
+    return requisicoes_restantes, valor_obtido
+
+
+def obtem_subconjunto_maximo(especifico:bool = False):
     # Obtem o numero de requisições
-    numeroRequisicoes = int(input("Número de Requisições: "))
+    numeroRequisicoes = int(input("\nNúmero de Requisições: "))
     
     # Obtem os valores de s, f e v para cada requisição
     requisicoes = list()
@@ -109,15 +131,49 @@ def main():
 
     # Ordena as requisições pelo seu tempo final
     mergeSort(requisicoes)
-
+        
     # Calcula o peso de cada requisição
     calculaPesos(requisicoes)
 
-    # Obtem o valor do subconjunto compativel de peso maximo
-    pesoMaximo = computa_OPT_memorizado(requisicoes, len(requisicoes) - 1)
+    # Se for o caso 1, obtenha o peso maximo
+    if not especifico:
+        # Obtem o valor do subconjunto compativel de peso maximo
+        pesoMaximo = computa_OPT_memorizado(requisicoes, len(requisicoes) - 1)
 
-    # Imprime o resultado
-    print(pesoMaximo)
+        # Imprime o resultado
+        print("\nPeso máximo = " + str(pesoMaximo))
+    
+    # Se for o caso 2, onde o peso esperado é dado, obtenha o conjunto
+    else:
+        # Obtem o peso esperado
+        peso = int(input("Peso esperado: "))
 
+        # Obtem o valor do subconjunto compativel com um certo peso
+        conjunto, _ = obtem_subconjunto_por_peso(requisicoes, peso)
+
+        # Imprime os resultados
+        if conjunto == [] and peso != 0:
+            print("\nNão existe um subconjunto compatível com este peso!")
+        else:
+            conjunto = [str(requisicoes.index(x) + 1) for x in conjunto]
+            print('\nConjunto Obtido: {%s}' % ', '.join(conjunto))
+
+
+def main():
+    while(True):
+        # Menu simples para navegação:
+        print("\nProblema da Mochila:")
+        print("1 - Valor de subconjunto compatível de peso máximo")
+        print("2 - Preenchimento de subconjunto com certo peso")
+        print("Digite qualquer outra coisa para sair")
+
+        alternativa = input("Seleção: ")
+
+        if alternativa == '1':
+            obtem_subconjunto_maximo(especifico=False)
+        elif alternativa == '2':
+            obtem_subconjunto_maximo(especifico=True)
+        else:
+            return
 
 main()
