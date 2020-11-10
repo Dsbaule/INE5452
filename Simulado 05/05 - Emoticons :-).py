@@ -1,23 +1,24 @@
 import string
 
 def remove_emotes(line: string, emoticons: list):
-    minimum = 0
+    index = [0 for _ in emoticons]
+    chars_swapped = 0
 
-    #print(line)
-    
+    line = list(line)
+
     for i in range(len(line)):
-        for emote in emoticons:
-            if line[i:].startswith(emote):
-                """
-                cur_minimum = len(line)
-                for j in range(len(emote)):
-                    character = line
-                    cur_minimum = min(cur_minimum, remove_emotes(line[:i + j] + line[i + j + 1:], emoticons))
-                """
-                return 1 + remove_emotes(line[:i] + line[i + len(emote):], emoticons)
+        for j in range(len(emoticons)):
+            if line[i] == emoticons[j][index[j]]:
+                index[j] += 1
+            else:
+                index[j] = 1 if line[i] == emoticons[j][0] else 0
+            
+            if index[j] == len(emoticons[j]):
+                line[i] = ' '
+                chars_swapped += 1
+                index = [0 for _ in emoticons]
     
-    return minimum
-
+    return chars_swapped
 
 def main():
     while True:
@@ -33,7 +34,7 @@ def main():
         lines = list()
         for _ in range(M):
             lines.append(input())
-
+        
         minimum = 0
         for line in lines:
             minimum += remove_emotes(line, emoticons)
