@@ -23,7 +23,7 @@ def main():
                 carry = 1
         
         if num_carries == 0:
-            print('No carry operations.')
+            print('No carry operation.')
         elif num_carries == 1:
             print('1 carry operation.')
         else:
