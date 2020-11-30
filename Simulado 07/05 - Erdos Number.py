@@ -61,8 +61,8 @@ def main(num_teste):
 
     print('Teste %d' % num_teste)
     for author in author_list:
-        #if author.name != 'P. Erdos':
-        print('%s: %s' % (author.name, author.erdos_number))
+        if author.name != 'P. Erdos':
+            print('%s: %s' % (author.name, author.erdos_number))
 
     return True
 
